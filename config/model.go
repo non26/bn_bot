@@ -10,6 +10,7 @@ type Config struct {
 type BinanceService struct {
 	PostionManagement BinancePostionManagement `mapstructure:"postion_management" json:"postion_management"`
 	Trade             BinanceTrade             `mapstructure:"trade" json:"trade"`
+	MarketData        BinanceMarketData        `mapstructure:"market_data" json:"market_data"`
 }
 
 type BinancePostionManagement struct {
@@ -22,4 +23,10 @@ type BinancePostionManagement struct {
 type BinanceTrade struct {
 	BaseUrl          string `mapstructure:"base_url" json:"base_url"`
 	NewOrderEndPoint string `mapstructure:"new_order_end_point" json:"new_order_end_point"`
+}
+
+type BinanceMarketData struct {
+	BaseUrl                  string `mapstructure:"base_url" json:"base_url"`
+	GetKlineEndPoint         string `mapstructure:"get_kline_end_point" json:"get_kline_end_point"`
+	GetPreviousKlineEndPoint string `mapstructure:"get_previous_kline_end_point" json:"get_previous_kline_end_point"`
 }
