@@ -1,4 +1,4 @@
-package bnbot
+package db
 
 import (
 	"bnbot/app/core/bot/infrastructure/db"
