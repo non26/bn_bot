@@ -1,4 +1,4 @@
-package botbntemplate
+package db
 
 import (
 	"bnbot/app/core/bot_register_template/domain"
