@@ -4,7 +4,6 @@ import (
 	"bnbot/app/core/bot_register_template/infrastructure/db/model"
 	"context"
 
-	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 )
 
@@ -13,7 +12,7 @@ func (r *botBNTemplateRepository) Delete(ctx context.Context, exchangeId string,
 	table.ExchangeId = exchangeId
 	table.TemplateId = templateId
 	_, err := r.client.DeleteItem(ctx, &dynamodb.DeleteItemInput{
-		TableName: aws.String("bot_bn_template"),
+		TableName: table.TableName(),
 		Key:       table.GetKey(),
 	})
 	if err != nil {

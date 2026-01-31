@@ -1,10 +1,17 @@
 package config
 
+import "github.com/spf13/viper"
+
 type Config struct {
-	Env     string         `mapstructure:"environment" json:"environment"`
-	Port    int            `mapstructure:"port" json:"port"`
-	Id      string         `mapstructure:"id" json:"id"`
-	Binance BinanceService `mapstructure:"binance" json:"binance"`
+	Env      string         `mapstructure:"environment" json:"environment"`
+	Port     int            `mapstructure:"port" json:"port"`
+	Id       string         `mapstructure:"id" json:"id"`
+	Binance  BinanceService `mapstructure:"binance" json:"binance"`
+	DynamoDB DynamoDB       `mapstructure:"dynamodb" json:"dynamodb"`
+}
+
+func NewConfig() *Config {
+	return &Config{}
 }
 
 type BinanceService struct {
@@ -29,4 +36,25 @@ type BinanceMarketData struct {
 	BaseUrl                  string `mapstructure:"base_url" json:"base_url"`
 	GetKlineEndPoint         string `mapstructure:"get_kline_end_point" json:"get_kline_end_point"`
 	GetPreviousKlineEndPoint string `mapstructure:"get_previous_kline_end_point" json:"get_previous_kline_end_point"`
+}
+
+type DynamoDB struct {
+	Region   string `mapstructure:"region" json:"region"`
+	Ak       string `mapstructure:"ak" json:"ak"`
+	Sk       string `mapstructure:"sk" json:"sk"`
+	Endpoint string `mapstructure:"endpoint" json:"endpoint"`
+}
+
+func LoadConfig() (*Config, error) {
+	config := NewConfig()
+	viper.SetConfigName("config")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("./config")
+	viper.AutomaticEnv()
+	err := viper.ReadInConfig()
+	if err != nil {
+		return nil, err
+	}
+	viper.Unmarshal(&config)
+	return config, nil
 }

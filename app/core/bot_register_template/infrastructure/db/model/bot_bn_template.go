@@ -4,7 +4,9 @@ import (
 	"bnbot/app/core/bot_register_template/domain"
 	"reflect"
 
+	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
+	bntime "github.com/non26/tradepkg/pkg/bn/bn_time"
 	"github.com/non26/tradepkg/pkg/bn/utils"
 )
 
@@ -20,8 +22,8 @@ func NewEmptyBotBNTemplate() *BotBNTemplate {
 	return &BotBNTemplate{}
 }
 
-func (b *BotBNTemplate) TableName() string {
-	return "bot_bn_template"
+func (b *BotBNTemplate) TableName() *string {
+	return aws.String("bn_bot_template")
 }
 
 func (b *BotBNTemplate) GetKey() map[string]types.AttributeValue {
@@ -54,6 +56,10 @@ func (b *BotBNTemplate) GetAllowSpotField() (string, reflect.Type) {
 func (b *BotBNTemplate) GetCreatedAtField() (string, reflect.Type) {
 	v, t, _ := utils.GetStructTagValueByField(reflect.TypeOf(b).Elem(), "CreatedAt", "dynamodb")
 	return v, t
+}
+
+func (b *BotBNTemplate) SetCreatedAt() {
+	b.CreatedAt = bntime.GetDBTime()
 }
 
 func (b *BotBNTemplate) FromDomain(d *domain.BotTemplate) *BotBNTemplate {

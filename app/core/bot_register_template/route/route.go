@@ -15,8 +15,10 @@ func Route(router *gin.Engine, client *dynamodb.Client) {
 
 	botBNTemplateService := service.NewBotBNTemplateService(botBNTemplateRepository)
 
-	router.POST("/bot-bn-template/upsert", handler.NewRegisterTemplateHandler(botBNTemplateService).Handle)
-	router.POST("/bot-bn-template", handler.NewGetTemplateHandler(botBNTemplateService).Handle)
-	router.GET("/bot-bn-template/all", handler.NewGetAllTemplateHandler(botBNTemplateService).Handle)
-	router.POST("/bot-bn-template/delete", handler.NewDeleteTemplateHandler(botBNTemplateService).Handle)
+	group := router.Group("/bot-bn-template")
+
+	group.POST("/upsert", handler.NewRegisterTemplateHandler(botBNTemplateService).Handle)
+	group.POST("/get", handler.NewGetTemplateHandler(botBNTemplateService).Handle)
+	group.GET("/all", handler.NewGetAllTemplateHandler(botBNTemplateService).Handle)
+	group.POST("/delete", handler.NewDeleteTemplateHandler(botBNTemplateService).Handle)
 }
