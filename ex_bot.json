@@ -1,0 +1,39 @@
+{
+    "template_attributes": [
+        {
+            "field_value_type": "string",
+            "field_json": "symbol",
+            "field_value_example": "BTCUSDT",
+            "field_description": "symbol of the bot with USDT as baseasset",
+            "field_possible_value": ""
+        },
+        {
+            "field_value_type": "string",
+            "field_json": "position_side",
+            "field_value_example": "LONG",
+            "field_description": "position side of the bot",
+            "field_possible_value": "LONG,SHORT,BOTH"
+        },
+        {
+            "field_value_type":"string",
+            "field_json":"quantity",
+            "field_value_example":"0.1",
+            "field_description":"quantity of the bot",
+            "field_possible_value":""
+        },
+        {
+            "field_value_type":"string",
+            "field_json":"candle_source",
+            "field_value_example":"kline",
+            "field_description":"candle source of the bot",
+            "field_possible_value":"heikin_ashi,kline"
+        },
+        {
+            "field_value_type":"string",
+            "field_json":"candle_interval",
+            "field_value_example":"1m",
+            "field_description":"candle interval of the bot",
+            "field_possible_value":"1h,2h,3h,4h,6h,8h,12h,1d,2d,3d,1w"
+        }
+    ]
+}

@@ -11,7 +11,7 @@ import (
 
 type BnBot struct {
 	Id         string `dynamodbav:"id" dynamodb:"id"`
-	ExChangeId string `dynamodbav:"exchange_id" dynamodb:"exchange_id"`
+	ExchangeId string `dynamodbav:"exchange_id" dynamodb:"exchange_id"`
 	TemplateId string `dynamodbav:"template_id" dynamodb:"template_id"`
 	IsActive   bool   `dynamodbav:"is_active" dynamodb:"is_active"`
 	Attributes string `dynamodbav:"attributes" dynamodb:"attributes"`
@@ -65,7 +65,7 @@ func (b *BnBot) GetAccountIdField() (string, reflect.Type) {
 func (b *BnBot) ToDomain() *domain.Bot {
 	return &domain.Bot{
 		BotId:      b.Id,
-		ExChangeId: b.ExChangeId,
+		ExChangeId: b.ExchangeId,
 		TemplateId: b.TemplateId,
 		IsActive:   b.IsActive,
 		Attributes: b.Attributes,
@@ -76,7 +76,7 @@ func (b *BnBot) ToDomain() *domain.Bot {
 func (b *BnBot) FromDomain(d *domain.Bot) *BnBot {
 	return &BnBot{
 		Id:         d.BotId,
-		ExChangeId: d.ExChangeId,
+		ExchangeId: d.ExChangeId,
 		TemplateId: d.TemplateId,
 		IsActive:   d.IsActive,
 		Attributes: d.Attributes,
