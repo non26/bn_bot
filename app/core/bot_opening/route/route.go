@@ -13,8 +13,10 @@ func Route(router *gin.Engine, client *dynamodb.Client) {
 	botOpeningRepository := db.NewBotOpeningRepository(client)
 	botOpeningService := service.NewService(botOpeningRepository)
 
-	router.POST("/bot-opening/upsert", handler.NewUpsertHandler(botOpeningService).Handle)
-	router.POST("/bot-opening/delete", handler.NewDeleteHandler(botOpeningService).Handle)
-	router.GET("/bot-opening/get", handler.NewGetHandler(botOpeningService).Handle)
-	router.GET("/bot-opening/get-all", handler.NewGetAllHandler(botOpeningService).Handle)
+	group := router.Group("/bn-opening")
+
+	group.POST("/upsert", handler.NewUpsertHandler(botOpeningService).Handle)
+	group.POST("/delete", handler.NewDeleteHandler(botOpeningService).Handle)
+	group.POST("/get", handler.NewGetHandler(botOpeningService).Handle)
+	group.GET("/all", handler.NewGetAllHandler(botOpeningService).Handle)
 }

@@ -21,7 +21,7 @@ func (r *botOpeningRepository) GetAll(ctx context.Context) ([]*domain.BotOpening
 		return nil, nil
 	}
 	result := []*model.BotOpening{}
-	err = attributevalue.UnmarshalListOfMaps(items.Items, result)
+	err = attributevalue.UnmarshalListOfMaps(items.Items, &result)
 	if err != nil {
 		return nil, err
 	}
