@@ -14,6 +14,7 @@ func (r *botOpeningRepository) Upsert(ctx context.Context, b *domain.BotOpening)
 	table.BotId = b.BotId
 	table.TemplateId = b.TemplateId
 	table.ClientId = b.ClientId
+	table.BnClientId = b.BnClientId
 
 	update_config := dynamodbconfig.NewUpdateTable(table)
 	update_config.Set(table.GetTemplateIdField, b.TemplateId)
