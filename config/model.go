@@ -3,15 +3,20 @@ package config
 import "github.com/spf13/viper"
 
 type Config struct {
-	Env      string         `mapstructure:"environment" json:"environment"`
-	Port     int            `mapstructure:"port" json:"port"`
-	Id       string         `mapstructure:"id" json:"id"`
-	Binance  BinanceService `mapstructure:"binance" json:"binance"`
-	DynamoDB DynamoDB       `mapstructure:"dynamodb" json:"dynamodb"`
+	Env            string         `mapstructure:"environment" json:"environment"`
+	Port           int            `mapstructure:"port" json:"port"`
+	Id             string         `mapstructure:"id" json:"id"`
+	HealthCheckMsg string         `mapstructure:"healthCheckMsg" json:"healthCheckMsg"`
+	Binance        BinanceService `mapstructure:"binance" json:"binance"`
+	DynamoDB       DynamoDB       `mapstructure:"dynamodb" json:"dynamodb"`
 }
 
 func NewConfig() *Config {
 	return &Config{}
+}
+
+func (c *Config) IsLocal() bool {
+	return c.Env == "local"
 }
 
 type BinanceService struct {

@@ -1,2 +1,2 @@
 local:
-	go run cmd/main.go
+	go run cmd/local/main.go
