@@ -45,6 +45,7 @@ func init() {
 	// route
 	core.RouteCore(app_gin, dynamodbclient)
 	bff.BFFRoute(app_gin, dynamodbclient, _config)
+	cmd.UpdateConfig(app_gin, _config)
 
 	echoLambda = ginadapter.New(app_gin)
 }
