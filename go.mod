@@ -5,16 +5,17 @@ go 1.25.3
 replace github.com/non26/tradepkg => ../tradepkg
 
 require (
+	github.com/aws/aws-lambda-go v1.52.0
 	github.com/aws/aws-sdk-go-v2 v1.41.1
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.20.30
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.53.6
+	github.com/awslabs/aws-lambda-go-api-proxy v0.16.2
 	github.com/gin-gonic/gin v1.11.0
 	github.com/non26/tradepkg v0.0.0-00010101000000-000000000000
 	github.com/spf13/viper v1.21.0
 )
 
 require (
-	github.com/aws/aws-lambda-go v1.52.0 // indirect
 	github.com/aws/aws-sdk-go-v2/config v1.28.5 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.46 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.20 // indirect
@@ -29,7 +30,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.28.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.33.1 // indirect
 	github.com/aws/smithy-go v1.24.0 // indirect
-	github.com/awslabs/aws-lambda-go-api-proxy v0.16.2 // indirect
 	github.com/bytedance/sonic v1.14.0 // indirect
 	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
