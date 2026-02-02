@@ -13,6 +13,7 @@ type BotOpening struct {
 	BotId      string `dynamodbav:"id" dynamodb:"id"`
 	TemplateId string `dynamodbav:"template_id" dynamodb:"template_id"`
 	ClientId   string `dynamodbav:"client_id" dynamodb:"client_id"`
+	BnClientId string `dynamodbav:"bn_client_id" dynamodb:"bn_client_id"`
 }
 
 func NewEmptyBotOpening() *BotOpening {
@@ -44,10 +45,16 @@ func (b *BotOpening) GetClientIdField() (string, reflect.Type) {
 	return v, t
 }
 
+func (b *BotOpening) GetBnClientIdField() (string, reflect.Type) {
+	v, t, _ := utils.GetStructTagValueByField(reflect.TypeOf(b).Elem(), "BnClientId", "dynamodb")
+	return v, t
+}
+
 func (b *BotOpening) ToDomain() *domain.BotOpening {
 	return &domain.BotOpening{
 		BotId:      b.BotId,
 		TemplateId: b.TemplateId,
 		ClientId:   b.ClientId,
+		BnClientId: b.BnClientId,
 	}
 }

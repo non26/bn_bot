@@ -9,6 +9,7 @@ type BotOpening struct {
 	BotId      string
 	TemplateId string
 	ClientId   string
+	BnClientId string
 }
 
 func NewEmptyBotOpening() *BotOpening {
@@ -23,6 +24,7 @@ func (b *BotOpening) FromExternalBotOpeningServiceDomainToDomain(d *externalboto
 		BotId:      d.BotId,
 		TemplateId: d.TemplateId,
 		ClientId:   d.ClientId,
+		BnClientID: d.BnClientId,
 	}
 }
 
@@ -34,5 +36,6 @@ func (b *BotOpening) FromDomainToExternalBotOpeningServiceDomain(d *domain.Trade
 		BotId:      d.BotId,
 		TemplateId: d.TemplateId,
 		ClientId:   d.ClientId,
+		BnClientId: d.BnClientID,
 	}
 }

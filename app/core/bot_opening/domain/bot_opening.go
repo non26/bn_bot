@@ -4,4 +4,5 @@ type BotOpening struct {
 	BotId      string
 	TemplateId string
 	ClientId   string
+	BnClientId string
 }

@@ -15,13 +15,13 @@ func NewEmptyNewOrderReq() *NewOrderReq {
 	return &NewOrderReq{}
 }
 
-func (n *NewOrderReq) FromDomainToExternalServiceReq(d *domain.Trade) *NewOrderReq {
-	return &NewOrderReq{
-		ClientID:     d.ClientId,
-		Symbol:       d.Symbol,
-		PositionSide: d.PositionSide,
-		Side:         d.Side,
-		AmountB:      d.Quantity,
-		AccountId:    d.AccountId,
-	}
+func (n *NewOrderReq) FromDomainToExternalServiceReq(d *domain.Trade) {
+
+	n.ClientID = d.BnClientID // send bn client id to binance instead of client id for BOT trade
+	n.Symbol = d.Symbol
+	n.PositionSide = d.PositionSide
+	n.Side = d.Side
+	n.AmountB = d.Quantity
+	n.AccountId = d.AccountId
+
 }

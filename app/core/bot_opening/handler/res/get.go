@@ -6,6 +6,7 @@ type GetResponse struct {
 	BotId      string `json:"bot_id"`
 	TemplateId string `json:"template_id"`
 	ClientId   string `json:"client_id"`
+	BnClientId string `json:"bn_client_id"`
 }
 
 func (g *GetResponse) FromDomain(b *domain.BotOpening) *GetResponse {
@@ -15,5 +16,6 @@ func (g *GetResponse) FromDomain(b *domain.BotOpening) *GetResponse {
 	g.BotId = b.BotId
 	g.TemplateId = b.TemplateId
 	g.ClientId = b.ClientId
+	g.BnClientId = b.BnClientId
 	return g
 }

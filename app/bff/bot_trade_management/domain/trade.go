@@ -19,6 +19,7 @@ type Trade struct {
 	ClientId     string
 	AccountId    string
 	IsBotActve   bool
+	BnClientID   string
 }
 
 func (t *Trade) IsSpotTrade() bool {

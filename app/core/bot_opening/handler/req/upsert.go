@@ -6,6 +6,7 @@ type UpsertRequest struct {
 	BotId      string `json:"bot_id"`
 	TemplateId string `json:"template_id"`
 	ClientId   string `json:"client_id"`
+	BnClientId string `json:"bn_client_id"`
 }
 
 func (u *UpsertRequest) ToDomain() *domain.BotOpening {
@@ -13,5 +14,6 @@ func (u *UpsertRequest) ToDomain() *domain.BotOpening {
 		BotId:      u.BotId,
 		TemplateId: u.TemplateId,
 		ClientId:   u.ClientId,
+		BnClientId: u.BnClientId,
 	}
 }

@@ -17,6 +17,8 @@ func Route(router *gin.Engine, config *config.Config) {
 	)
 	marketDataService := service.NewService(marketDataExternalService)
 
-	router.POST("/kline", handler.NewGetKlineHandler(marketDataService).Handle)
-	router.POST("/previous-kline", handler.NewGetPreviousKlineHandler(marketDataService).Handle)
+	group := router.Group("/market-data")
+
+	group.POST("/kline", handler.NewGetKlineHandler(marketDataService).Handle)
+	group.POST("/previous-kline", handler.NewGetPreviousKlineHandler(marketDataService).Handle)
 }

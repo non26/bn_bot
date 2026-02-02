@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bnbot/app/bff"
 	"bnbot/app/core"
 	"bnbot/config"
 	"fmt"
@@ -24,6 +25,7 @@ func main() {
 
 	router := gin.Default()
 	core.RouteCore(router, dynamodbclient)
+	bff.BFFRoute(router, dynamodbclient, config)
 
 	router.Run(fmt.Sprintf(":%d", config.Port))
 }

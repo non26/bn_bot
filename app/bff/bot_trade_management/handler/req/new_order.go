@@ -13,6 +13,7 @@ type NewOrderRequest struct {
 	PositionSide string `json:"position_side"` // long, short
 	ClientId     string `json:"client_id"`
 	AccountId    string `json:"account_id"`
+	BnClientID   string `json:"bn_client_id"`
 }
 
 func (n *NewOrderRequest) ToDomain() *domain.Trade {
@@ -26,5 +27,7 @@ func (n *NewOrderRequest) ToDomain() *domain.Trade {
 		PositionSide: n.PositionSide,
 		ClientId:     n.ClientId,
 		AccountId:    n.AccountId,
+		BotId:        n.BotId,
+		BnClientID:   n.BnClientID,
 	}
 }
