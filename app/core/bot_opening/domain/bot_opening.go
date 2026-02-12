@@ -1,8 +1,9 @@
 package domain
 
 type BotOpening struct {
-	BotId      string
-	TemplateId string
-	ClientId   string
-	BnClientId string
+	BotId       string
+	TemplateId  string
+	ClientId    string
+	BnClientId  string
+	Restriction string
 }

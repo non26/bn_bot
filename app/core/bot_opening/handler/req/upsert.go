@@ -3,10 +3,11 @@ package req
 import "bnbot/app/core/bot_opening/domain"
 
 type UpsertRequest struct {
-	BotId      string `json:"bot_id"`
-	TemplateId string `json:"template_id"`
-	ClientId   string `json:"client_id"`
-	BnClientId string `json:"bn_client_id"`
+	BotId       string `json:"bot_id"`
+	TemplateId  string `json:"template_id"`
+	ClientId    string `json:"client_id"`
+	BnClientId  string `json:"bn_client_id"`
+	Restriction string `json:"restriction"`
 }
 
 func (u *UpsertRequest) ToDomain() *domain.BotOpening {

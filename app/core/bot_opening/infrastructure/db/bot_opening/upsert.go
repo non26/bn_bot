@@ -20,6 +20,7 @@ func (r *botOpeningRepository) Upsert(ctx context.Context, b *domain.BotOpening)
 	update_config.Set(table.GetTemplateIdField, b.TemplateId)
 	update_config.Set(table.GetClientIdField, b.ClientId)
 	update_config.Set(table.GetBnClientIdField, b.BnClientId)
+	update_config.Set(table.GetRestrictionField, b.Restriction)
 	expression := update_config.BuildExpression()
 	_, err := r.client.UpdateItem(ctx, &dynamodb.UpdateItemInput{
 		TableName:                 table.TableName(),

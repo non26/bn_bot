@@ -10,10 +10,11 @@ import (
 )
 
 type BotOpening struct {
-	BotId      string `dynamodbav:"id" dynamodb:"id"`
-	TemplateId string `dynamodbav:"template_id" dynamodb:"template_id"`
-	ClientId   string `dynamodbav:"client_id" dynamodb:"client_id"`
-	BnClientId string `dynamodbav:"bn_client_id" dynamodb:"bn_client_id"`
+	BotId       string `dynamodbav:"id" dynamodb:"id"`
+	TemplateId  string `dynamodbav:"template_id" dynamodb:"template_id"`
+	ClientId    string `dynamodbav:"client_id" dynamodb:"client_id"`
+	BnClientId  string `dynamodbav:"bn_client_id" dynamodb:"bn_client_id"`
+	Restriction string `dynamodbav:"restriction" dynamodb:"restriction"`
 }
 
 func NewEmptyBotOpening() *BotOpening {
@@ -47,6 +48,11 @@ func (b *BotOpening) GetClientIdField() (string, reflect.Type) {
 
 func (b *BotOpening) GetBnClientIdField() (string, reflect.Type) {
 	v, t, _ := utils.GetStructTagValueByField(reflect.TypeOf(b).Elem(), "BnClientId", "dynamodb")
+	return v, t
+}
+
+func (b *BotOpening) GetRestrictionField() (string, reflect.Type) {
+	v, t, _ := utils.GetStructTagValueByField(reflect.TypeOf(b).Elem(), "Restriction", "dynamodb")
 	return v, t
 }
 
