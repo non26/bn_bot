@@ -9,7 +9,7 @@ import (
 func (s *botRegisterTemplateService) Upsert(ctx context.Context, b *domain.BotRegister) error {
 	req := &dto.BotRegisterTemplateDTO{}
 	req = req.FromDomain(b)
-	err := s.repository.Upsert(ctx, req.ToExternalServiceDomain())
+	err := s.externalBotRegisterTemplatCoreService.Upsert(ctx, req.ToExternalServiceDomain())
 	if err != nil {
 		return err
 	}

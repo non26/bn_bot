@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"bnbot/app/bff/bot_management/handler/res"
+	res "bnbot/app/bff/bot_management/handler/res/bot_opening"
 	"bnbot/app/bff/bot_management/service"
 	"net/http"
 
@@ -10,14 +10,15 @@ import (
 )
 
 type getAllHandler struct {
-	service service.IService
+	service service.IBotOpeningService
 }
 
-func NewGetAllHandler(service service.IService) *getAllHandler {
+func NewGetAllHandler(service service.IBotOpeningService) *getAllHandler {
 	return &getAllHandler{service: service}
 }
 
 func (h *getAllHandler) Handle(c *gin.Context) {
+
 	items, err := h.service.GetAll(c.Request.Context())
 	if err != nil {
 		response := appresponse.NewAppResponse(appresponse.FailCode, err.Error(), nil)
@@ -25,7 +26,7 @@ func (h *getAllHandler) Handle(c *gin.Context) {
 		return
 	}
 	res := &res.GetAllResponse{}
-	res.FromDomain(items)
+	res.FromDomainList(items)
 	response := appresponse.NewAppResponse(appresponse.SuccessCode, appresponse.SuccessMsg, res)
 	response.SendGinResponse(http.StatusOK, c)
 }

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"bnbot/app/bff/bot_management/handler/req"
+	req "bnbot/app/bff/bot_management/handler/req/bot"
 	"bnbot/app/bff/bot_management/service"
 	"net/http"
 
@@ -10,10 +10,10 @@ import (
 )
 
 type updateHandler struct {
-	service service.IService
+	service service.IBotService
 }
 
-func NewUpdateHandler(service service.IService) *updateHandler {
+func NewUpdateHandler(service service.IBotService) *updateHandler {
 	return &updateHandler{service: service}
 }
 

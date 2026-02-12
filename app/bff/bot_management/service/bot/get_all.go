@@ -5,8 +5,8 @@ import (
 	"context"
 )
 
-func (s *service) GetAll(ctx context.Context) ([]*domain.Bot, error) {
-	bots, err := s.botService.GetAll(ctx)
+func (s *botService) GetAll(ctx context.Context) ([]*domain.Bot, error) {
+	bots, err := s.externalService.GetAll(ctx)
 	if err != nil {
 		return nil, err
 	}

@@ -12,7 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"bnbot/app/bff"
-	"bnbot/app/core"
 
 	bndynamodbconfig "github.com/non26/tradepkg/pkg/bn/dynamodb_config"
 )
@@ -42,9 +41,9 @@ func init() {
 	// echo
 	app_gin := gin.Default()
 	cmd.HealthCheck(app_gin, _config.HealthCheckMsg)
+
 	// route
-	core.RouteCore(app_gin, dynamodbclient)
-	bff.BFFRoute(app_gin, dynamodbclient, _config)
+	bff.Route(app_gin, dynamodbclient, _config)
 	cmd.UpdateConfig(app_gin, _config)
 
 	echoLambda = ginadapter.New(app_gin)

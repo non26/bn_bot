@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"bnbot/app/bff/bot_management/handler/req"
+	req "bnbot/app/bff/bot_management/handler/req/bot_opening"
 	"bnbot/app/bff/bot_management/service"
 	"net/http"
 
@@ -10,10 +10,10 @@ import (
 )
 
 type deleteHandler struct {
-	service service.IService
+	service service.IBotOpeningService
 }
 
-func NewDeleteHandler(service service.IService) *deleteHandler {
+func NewDeleteHandler(service service.IBotOpeningService) *deleteHandler {
 	return &deleteHandler{service: service}
 }
 

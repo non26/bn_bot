@@ -1,8 +1,7 @@
 package handler
 
 import (
-	"bnbot/app/bff/bot_management/handler/req"
-	"bnbot/app/bff/bot_management/handler/res"
+	req "bnbot/app/bff/bot_management/handler/req/bot"
 	"bnbot/app/bff/bot_management/service"
 	"net/http"
 
@@ -10,29 +9,27 @@ import (
 	appresponse "github.com/non26/tradepkg/pkg/bn/app_response"
 )
 
-type getHandler struct {
-	service service.IService
+type insertHandler struct {
+	service service.IBotService
 }
 
-func NewGetHandler(service service.IService) *getHandler {
-	return &getHandler{service: service}
+func NewInsertHandler(service service.IBotService) *insertHandler {
+	return &insertHandler{service: service}
 }
 
-func (h *getHandler) Handle(c *gin.Context) {
-	req := &req.GetRequest{}
+func (h *insertHandler) Handle(c *gin.Context) {
+	req := &req.InsertRequest{}
 	if err := c.ShouldBindJSON(req); err != nil {
 		response := appresponse.NewAppResponse(appresponse.InvalidRequestErrorCode, err.Error(), nil)
 		response.SendGinResponse(http.StatusBadRequest, c)
 		return
 	}
-	item, err := h.service.Get(c.Request.Context(), req.BotId)
+	err := h.service.Insert(c.Request.Context(), req.ToDomain())
 	if err != nil {
 		response := appresponse.NewAppResponse(appresponse.FailCode, err.Error(), nil)
 		response.SendGinResponse(http.StatusInternalServerError, c)
 		return
 	}
-	res := &res.GetResponse{}
-	res.FromDomain(item)
-	response := appresponse.NewAppResponse(appresponse.SuccessCode, appresponse.SuccessMsg, res)
+	response := appresponse.NewAppResponse(appresponse.SuccessCode, appresponse.SuccessMsg, nil)
 	response.SendGinResponse(http.StatusOK, c)
 }

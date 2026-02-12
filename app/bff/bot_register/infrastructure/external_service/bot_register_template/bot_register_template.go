@@ -2,13 +2,13 @@ package externalservice
 
 import (
 	externalservice "bnbot/app/bff/bot_register/infrastructure/external_service"
-	"bnbot/app/core/bot_register_template/infrastructure/db"
+	externalbotregistertemplatcoreservice "bnbot/app/core/bot_register_template/service"
 )
 
 type botRegisterTemplateService struct {
-	repository db.IBotBNTemplateRepository
+	externalBotRegisterTemplatCoreService externalbotregistertemplatcoreservice.IBotBNTemplateService
 }
 
-func NewBotRegisterTemplateService(repository db.IBotBNTemplateRepository) externalservice.IBotRegisterTemplateService {
-	return &botRegisterTemplateService{repository: repository}
+func NewBotRegisterTemplateService(externalBotRegisterTemplatCoreService externalbotregistertemplatcoreservice.IBotBNTemplateService) externalservice.IBotRegisterTemplateService {
+	return &botRegisterTemplateService{externalBotRegisterTemplatCoreService: externalBotRegisterTemplatCoreService}
 }

@@ -8,15 +8,15 @@ import (
 	appresponse "github.com/non26/tradepkg/pkg/bn/app_response"
 )
 
-func (s *service) Insert(ctx context.Context, b *domain.Bot) error {
-	bot, err := s.botService.Get(ctx, b.BotId)
+func (s *botService) Update(ctx context.Context, b *domain.Bot) error {
+	bot, err := s.externalService.Get(ctx, b.BotId)
 	if err != nil {
 		return err
 	}
-	if bot != nil {
-		return errors.New(appresponse.BOTFOUNDCODE)
+	if bot == nil {
+		return errors.New(appresponse.BOTNOTFOUNDCODE)
 	}
-	err = s.botService.Insert(ctx, b)
+	err = s.externalService.Update(ctx, b)
 	if err != nil {
 		return err
 	}

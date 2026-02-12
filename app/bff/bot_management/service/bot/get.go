@@ -5,8 +5,8 @@ import (
 	"context"
 )
 
-func (s *service) Get(ctx context.Context, botId string) (*domain.Bot, error) {
-	bot, err := s.botService.Get(ctx, botId)
+func (s *botService) Get(ctx context.Context, botId string) (*domain.Bot, error) {
+	bot, err := s.externalService.Get(ctx, botId)
 	if err != nil {
 		return nil, err
 	}

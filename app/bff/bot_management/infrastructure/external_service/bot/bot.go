@@ -2,13 +2,13 @@ package externalservice
 
 import (
 	externalservice "bnbot/app/bff/bot_management/infrastructure/external_service"
-	externalbotservice "bnbot/app/core/bot/service"
+	externalbotcoreservice "bnbot/app/core/bot/service"
 )
 
 type botService struct {
-	externalbotService externalbotservice.IService
+	externalbotService externalbotcoreservice.IService
 }
 
-func NewBotService(externalbotService externalbotservice.IService) externalservice.IBotManagementService {
+func NewBotService(externalbotService externalbotcoreservice.IService) externalservice.IBotExternalCoreService {
 	return &botService{externalbotService: externalbotService}
 }

@@ -2,11 +2,10 @@ package service
 
 import (
 	"bnbot/app/bff/bot_management/domain"
-	externalservice "bnbot/app/bff/bot_management/infrastructure/external_service"
 	"context"
 )
 
-type IService interface {
+type IBotService interface {
 	Get(ctx context.Context, botId string) (*domain.Bot, error)
 	GetAll(ctx context.Context) ([]*domain.Bot, error)
 	Insert(ctx context.Context, b *domain.Bot) error
@@ -14,10 +13,10 @@ type IService interface {
 	Delete(ctx context.Context, botId string) error
 }
 
-type service struct {
-	botService externalservice.IBotManagementService
-}
-
-func NewService(botService externalservice.IBotManagementService) IService {
-	return &service{botService: botService}
+type IBotOpeningService interface {
+	Get(ctx context.Context, botId string) (*domain.BotOpening, error)
+	GetAll(ctx context.Context) ([]*domain.BotOpening, error)
+	Insert(ctx context.Context, b *domain.BotOpening) error
+	Update(ctx context.Context, b *domain.BotOpening) error
+	Delete(ctx context.Context, botId string) error
 }

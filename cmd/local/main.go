@@ -26,8 +26,8 @@ func main() {
 
 	router := gin.Default()
 	cmd.HealthCheck(router, config.HealthCheckMsg)
-	core.RouteCore(router, dynamodbclient)
-	bff.BFFRoute(router, dynamodbclient, config)
+	core.Route(router, dynamodbclient)
+	bff.Route(router, dynamodbclient, config)
 
 	router.Run(fmt.Sprintf(":%d", config.Port))
 }

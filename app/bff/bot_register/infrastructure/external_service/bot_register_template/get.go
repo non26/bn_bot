@@ -7,7 +7,7 @@ import (
 )
 
 func (s *botRegisterTemplateService) Get(ctx context.Context, exchangeId string, templateId string) (*domain.BotRegister, error) {
-	item, err := s.repository.Get(ctx, exchangeId, templateId)
+	item, err := s.externalBotRegisterTemplatCoreService.Get(ctx, exchangeId, templateId)
 	if err != nil {
 		return nil, err
 	}

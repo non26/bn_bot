@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RouteCore(router *gin.Engine, client *dynamodb.Client) {
+func Route(router *gin.Engine, client *dynamodb.Client) {
 	group := router.Group("/core")
 	botroute.Routes(group, client)
 	botopeningroute.Route(group, client)

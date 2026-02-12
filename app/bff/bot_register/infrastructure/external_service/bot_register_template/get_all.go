@@ -7,7 +7,7 @@ import (
 )
 
 func (s *botRegisterTemplateService) GetAll(ctx context.Context) ([]*domain.BotRegister, error) {
-	templates, err := s.repository.GetAll(ctx)
+	templates, err := s.externalBotRegisterTemplatCoreService.GetAll(ctx)
 	if err != nil {
 		return nil, err
 	}
