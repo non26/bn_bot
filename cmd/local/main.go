@@ -3,6 +3,7 @@ package main
 import (
 	"bnbot/app/bff"
 	"bnbot/app/core"
+	"bnbot/cmd"
 	"bnbot/config"
 	"fmt"
 
@@ -24,6 +25,7 @@ func main() {
 	dynamodbclient := bndynamodbconfig.DynamoDB(dynamodbendpoint, dynamodbcredential, dynamodbconfig.LoadConfig()).NewLocal()
 
 	router := gin.Default()
+	cmd.HealthCheck(router, config.HealthCheckMsg)
 	core.RouteCore(router, dynamodbclient)
 	bff.BFFRoute(router, dynamodbclient, config)
 
