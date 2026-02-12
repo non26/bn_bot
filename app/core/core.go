@@ -10,7 +10,8 @@ import (
 )
 
 func RouteCore(router *gin.Engine, client *dynamodb.Client) {
-	botroute.Routes(router, client)
-	botopeningroute.Route(router, client)
-	botregistertemplateroute.Route(router, client)
+	group := router.Group("/core")
+	botroute.Routes(group, client)
+	botopeningroute.Route(group, client)
+	botregistertemplateroute.Route(group, client)
 }

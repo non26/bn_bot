@@ -9,11 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Route(router *gin.Engine, client *dynamodb.Client) {
+func Route(group *gin.RouterGroup, client *dynamodb.Client) {
 	botOpeningRepository := db.NewBotOpeningRepository(client)
 	botOpeningService := service.NewService(botOpeningRepository)
 
-	group := router.Group("/bn-opening")
+	group = group.Group("/bn-opening")
 
 	group.POST("/upsert", handler.NewUpsertHandler(botOpeningService).Handle)
 	group.POST("/delete", handler.NewDeleteHandler(botOpeningService).Handle)

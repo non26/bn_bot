@@ -15,7 +15,7 @@ import (
 )
 
 func Route(
-	router *gin.Engine,
+	group *gin.RouterGroup,
 	externalBotService externalbotservice.IService,
 	externalBotOpeningService externalbotopensingservice.IService,
 	config *config.Config,
@@ -36,5 +36,5 @@ func Route(
 		botService,
 	)
 
-	router.POST("/trade-management/new-order", handler.NewNewOrderHandler(service).Handle)
+	group.POST("/trade-management/new-order", handler.NewNewOrderHandler(service).Handle)
 }

@@ -9,13 +9,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Route(router *gin.Engine, client *dynamodb.Client) {
+func Route(group *gin.RouterGroup, client *dynamodb.Client) {
 
 	botBNTemplateRepository := botbntemplate.NewBotBNTemplateRepository(client)
 
 	botBNTemplateService := service.NewBotBNTemplateService(botBNTemplateRepository)
 
-	group := router.Group("/bot-bn-template")
+	group = group.Group("/bot-bn-template")
 
 	group.POST("/upsert", handler.NewRegisterTemplateHandler(botBNTemplateService).Handle)
 	group.POST("/get", handler.NewGetTemplateHandler(botBNTemplateService).Handle)

@@ -13,6 +13,7 @@ import (
 )
 
 func BFFRoute(router *gin.Engine, dynamoDBClient *dynamodb.Client, config *config.Config) {
+	group := router.Group("/bff")
 
 	externalBotCoreRepository := externalbotdbcoreservice.NewBnBotRepository(dynamoDBClient)
 	externalBotCoreService := externalbotcoreservice.NewService(externalBotCoreRepository)
@@ -20,5 +21,5 @@ func BFFRoute(router *gin.Engine, dynamoDBClient *dynamodb.Client, config *confi
 	externalBotOpeningRepository := externalbotopensingdbcoreservice.NewBotOpeningRepository(dynamoDBClient)
 	externalBotOpeningService := externalbotopensingcoreservice.NewService(externalBotOpeningRepository)
 
-	bfftraderoute.Route(router, externalBotCoreService, externalBotOpeningService, config)
+	bfftraderoute.Route(group, externalBotCoreService, externalBotOpeningService, config)
 }
