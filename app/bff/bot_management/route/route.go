@@ -27,8 +27,8 @@ func Route(group *gin.RouterGroup,
 	botGroup.POST("/insert", bothandler.NewInsertHandler(service).Handle)
 	botGroup.POST("/update", bothandler.NewUpdateHandler(service).Handle)
 	botGroup.POST("/delete", bothandler.NewDeleteHandler(service).Handle)
-	botGroup.GET("/get", bothandler.NewGetHandler(service).Handle)
-	botGroup.GET("/get-all", bothandler.NewGetAllHandler(service).Handle)
+	botGroup.POST("/get", bothandler.NewGetHandler(service).Handle)
+	botGroup.GET("/all", bothandler.NewGetAllHandler(service).Handle)
 
 	externalBotOpeningService := externalbotopeningservice.NewExternalBotOpeningService(extrenalBotOpeningCoreService)
 	botOpeningService := botopeningservice.NewBotOpeningService(externalBotOpeningService)
@@ -36,7 +36,7 @@ func Route(group *gin.RouterGroup,
 	botOpeningGroup.POST("/insert", botopeninghandler.NewInsertHandler(botOpeningService).Handle)
 	botOpeningGroup.POST("/update", botopeninghandler.NewUpdateHandler(botOpeningService).Handle)
 	botOpeningGroup.POST("/delete", botopeninghandler.NewDeleteHandler(botOpeningService).Handle)
-	botOpeningGroup.GET("/get", botopeninghandler.NewGetHandler(botOpeningService).Handle)
-	botOpeningGroup.GET("/get-all", botopeninghandler.NewGetAllHandler(botOpeningService).Handle)
+	botOpeningGroup.POST("/get", botopeninghandler.NewGetHandler(botOpeningService).Handle)
+	botOpeningGroup.GET("/all", botopeninghandler.NewGetAllHandler(botOpeningService).Handle)
 
 }

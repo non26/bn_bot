@@ -58,9 +58,10 @@ func (b *BotOpening) GetRestrictionField() (string, reflect.Type) {
 
 func (b *BotOpening) ToDomain() *domain.BotOpening {
 	return &domain.BotOpening{
-		BotId:      b.BotId,
-		TemplateId: b.TemplateId,
-		ClientId:   b.ClientId,
-		BnClientId: b.BnClientId,
+		BotId:       b.BotId,
+		TemplateId:  b.TemplateId,
+		ClientId:    b.ClientId,
+		BnClientId:  b.BnClientId,
+		Restriction: b.Restriction,
 	}
 }
