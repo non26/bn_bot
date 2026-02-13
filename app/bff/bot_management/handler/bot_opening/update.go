@@ -26,6 +26,14 @@ func (h *updateHandler) Handle(c *gin.Context) {
 	}
 	err := h.service.Update(c.Request.Context(), req.ToDomain())
 	if err != nil {
+		if err.Error() == appresponse.BOTNOTFOUNDCODE {
+			response := appresponse.NewAppResponse(
+				appresponse.BOTNOTFOUNDCODE,
+				appresponse.BOTMAPPING[appresponse.BOTNOTFOUNDCODE],
+				nil)
+			response.SendGinResponse(http.StatusOK, c)
+			return
+		}
 		response := appresponse.NewAppResponse(appresponse.FailCode, err.Error(), nil)
 		response.SendGinResponse(http.StatusInternalServerError, c)
 		return

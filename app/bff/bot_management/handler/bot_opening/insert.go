@@ -26,6 +26,14 @@ func (h *insertHandler) Handle(c *gin.Context) {
 	}
 	err := h.service.Insert(c.Request.Context(), req.ToDomain())
 	if err != nil {
+		if err.Error() == appresponse.BOTFOUNDCODE {
+			response := appresponse.NewAppResponse(
+				appresponse.BOTFOUNDCODE,
+				appresponse.BOTMAPPING[appresponse.BOTFOUNDCODE],
+				nil)
+			response.SendGinResponse(http.StatusOK, c)
+			return
+		}
 		response := appresponse.NewAppResponse(appresponse.FailCode, err.Error(), nil)
 		response.SendGinResponse(http.StatusInternalServerError, c)
 		return

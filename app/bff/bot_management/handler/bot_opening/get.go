@@ -28,6 +28,14 @@ func (h *getHandler) Handle(c *gin.Context) {
 
 	item, err := h.service.Get(c.Request.Context(), req.BotId)
 	if err != nil {
+		if err.Error() == appresponse.BOTNOTFOUNDCODE {
+			response := appresponse.NewAppResponse(
+				appresponse.BOTNOTFOUNDCODE,
+				appresponse.BOTMAPPING[appresponse.BOTNOTFOUNDCODE],
+				nil)
+			response.SendGinResponse(http.StatusOK, c)
+			return
+		}
 		response := appresponse.NewAppResponse(appresponse.FailCode, err.Error(), nil)
 		response.SendGinResponse(http.StatusInternalServerError, c)
 		return
