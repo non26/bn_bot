@@ -11,9 +11,9 @@ import (
 
 func Route(router *gin.Engine, config *config.Config) {
 	marketDataExternalService := externalservice.NewMarketDataService(
-		config.Binance.MarketData.BaseUrl,
-		config.Binance.MarketData.GetKlineEndPoint,
-		config.Binance.MarketData.GetPreviousKlineEndPoint,
+		config.Tradething.MarketData.BaseUrl,
+		config.Tradething.MarketData.GetKlineEndPoint,
+		config.Tradething.MarketData.GetPreviousKlineEndPoint,
 	)
 	marketDataService := service.NewService(marketDataExternalService)
 

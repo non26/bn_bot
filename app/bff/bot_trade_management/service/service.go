@@ -12,22 +12,19 @@ type IService interface {
 }
 
 type service struct {
-	tradeService              externalbnffservice.IExternalBnBffTradeService
-	positionManagementService externalbnffservice.IExternalBnBffPositionManagementService
-	botOpeningService         externalbnbotcoreservice.IExternalBnBotOpeningService
-	botService                externalbnbotcoreservice.IExternalBotService
+	tradeService      externalbnffservice.IExternalBnBffTradeService
+	botOpeningService externalbnbotcoreservice.IExternalBnBotOpeningService
+	botService        externalbnbotcoreservice.IExternalBotService
 }
 
 func NewService(
 	tradeService externalbnffservice.IExternalBnBffTradeService,
-	positionManagementService externalbnffservice.IExternalBnBffPositionManagementService,
 	botOpeningService externalbnbotcoreservice.IExternalBnBotOpeningService,
 	botService externalbnbotcoreservice.IExternalBotService,
 ) IService {
 	return &service{
-		tradeService:              tradeService,
-		positionManagementService: positionManagementService,
-		botOpeningService:         botOpeningService,
-		botService:                botService,
+		tradeService:      tradeService,
+		botOpeningService: botOpeningService,
+		botService:        botService,
 	}
 }

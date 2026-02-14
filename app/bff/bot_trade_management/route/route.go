@@ -2,7 +2,6 @@ package route
 
 import (
 	"bnbot/app/bff/bot_trade_management/handler"
-	_externalpositionmanagementservice "bnbot/app/bff/bot_trade_management/infrastructure/external_service/bn_bff/position_management"
 	_externaltradeservice "bnbot/app/bff/bot_trade_management/infrastructure/external_service/bn_bff/trade"
 	_externalbnopeningservice "bnbot/app/bff/bot_trade_management/infrastructure/external_service/bn_bot_core/bn_opening"
 	_externalbotservice "bnbot/app/bff/bot_trade_management/infrastructure/external_service/bn_bot_core/bot"
@@ -23,15 +22,11 @@ func Route(
 	bnopeningService := _externalbnopeningservice.NewExternalBnBotOpeningService(externalBotOpeningService)
 	botService := _externalbotservice.NewExternalBotService(externalBotService)
 	tradeService := _externaltradeservice.NewExternalBnBffTradeService(
-		config.Binance.Trade.BaseUrl,
-		config.Binance.Trade.NewOrderEndPoint)
-	positionManagementService := _externalpositionmanagementservice.NewExternalBnBffPositionManagementService(
-		config.Binance.PostionManagement.BaseUrl,
-		config.Binance.PostionManagement.GetPositionEndPoint)
+		config.Tradething.Trade.BaseUrl,
+		config.Tradething.Trade.NewOrderEndPoint)
 
 	service := service.NewService(
 		tradeService,
-		positionManagementService,
 		bnopeningService,
 		botService,
 	)

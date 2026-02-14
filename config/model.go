@@ -3,12 +3,12 @@ package config
 import "github.com/spf13/viper"
 
 type Config struct {
-	Env            string         `mapstructure:"environment" json:"environment"`
-	Port           int            `mapstructure:"port" json:"port"`
-	Id             string         `mapstructure:"id" json:"id"`
-	HealthCheckMsg string         `mapstructure:"healthCheckMsg" json:"healthCheckMsg"`
-	Binance        BinanceService `mapstructure:"binance" json:"binance"`
-	DynamoDB       DynamoDB       `mapstructure:"dynamodb" json:"dynamodb"`
+	Env            string     `mapstructure:"environment" json:"environment"`
+	Port           int        `mapstructure:"port" json:"port"`
+	Id             string     `mapstructure:"id" json:"id"`
+	HealthCheckMsg string     `mapstructure:"healthCheckMsg" json:"healthCheckMsg"`
+	Tradething     Tradething `mapstructure:"tradething" json:"tradething"`
+	DynamoDB       DynamoDB   `mapstructure:"dynamodb" json:"dynamodb"`
 }
 
 func NewConfig() *Config {
@@ -19,10 +19,9 @@ func (c *Config) IsLocal() bool {
 	return c.Env == "local"
 }
 
-type BinanceService struct {
-	PostionManagement BinancePostionManagement `mapstructure:"postion_management" json:"postion_management"`
-	Trade             BinanceTrade             `mapstructure:"trade" json:"trade"`
-	MarketData        BinanceMarketData        `mapstructure:"market_data" json:"market_data"`
+type Tradething struct {
+	Trade      BinanceTrade      `mapstructure:"trade" json:"trade"`
+	MarketData BinanceMarketData `mapstructure:"market_data" json:"market_data"`
 }
 
 type BinancePostionManagement struct {
