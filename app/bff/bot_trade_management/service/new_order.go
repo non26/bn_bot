@@ -32,9 +32,9 @@ func (s *service) NewOrder(ctx context.Context, d_req *domain.Trade) error {
 			return errors.New(appresponse.NotFoundOpeningPositionErrorCode)
 		}
 
-		if botopening.TemplateId != d_req.TemplateId {
-			return errors.New(appresponse.BOTNOTREGISTEREDCODE)
-		}
+		// if botopening.TemplateId != d_req.TemplateId {
+		// 	return errors.New(appresponse.BOTNOTREGISTEREDCODE)
+		// }
 
 		if botopening.BotId != d_req.BotId {
 			return errors.New(appresponse.BOTNOTFOUNDCODE)
